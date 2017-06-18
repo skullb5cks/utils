@@ -5,7 +5,7 @@
     function _init() {
         _setHash();
         _setEvent();
-        _request(_callback());
+        _request();
     }
 
     function _callback() {
@@ -19,7 +19,13 @@
         }
     }
 
-    function _request(callback) {
+    function _request() {
+        var parameters = _getHash().slice(1);
+
+        _ajax(parameters, _callback());
+    }
+
+    function _ajax(parameters, callback) {
         var req = new XMLHttpRequest();
         req.open('POST', 'http://192.168.0.14:8181/util/index.html', true);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -32,7 +38,7 @@
                 }
             }
         }
-        req.send(_getHash().slice(1));
+        req.send(parameters);
     }
 
     function _setEvent() {
