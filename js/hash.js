@@ -24,7 +24,6 @@
         req.open('POST', 'http://192.168.0.14:8181/util/index.html', true);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         req.onreadystatechange = function (e) {
-            console.log(req.readyState);
             if (req.readyState === 4) {
                 if (req.status === 200) {
                     callback.success(req.responseText);
